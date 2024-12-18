@@ -1,8 +1,9 @@
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import './normalize.css'
 import { RouterProvider, createBrowserRouter} from 'react-router-dom'
 import Layout from './pages/Layout/Layout'
 import Error from './pages/Error/Error'
+import SignUpClient from './pages/Auth/SignUpClient/SignUpClient'
 
 
 
@@ -14,8 +15,8 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: 'auth',
-        element:
+        path: 'client/sign-up',
+        element: <SignUpClient />
       }
     ]
   }
