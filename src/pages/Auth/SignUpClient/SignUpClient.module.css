@@ -9,10 +9,19 @@
     h1{
         color: #333333;
     }
+
+    .checkboxContainer{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+    }
+
     h5{
         margin-bottom: 20px;
         color: #333333;
-        width: 400px;
+        width: 350px;
         text-align: center;
 
         span{
@@ -43,6 +52,6 @@
         border-radius: 5px;
         height: 40px;
         padding: 0px 10px;
-        cursor: not-allowed;
+        /* cursor: not-allowed; */
     }
 }
