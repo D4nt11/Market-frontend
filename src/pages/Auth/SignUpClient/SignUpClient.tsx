@@ -3,15 +3,15 @@ import styles from "./SignUpClient.module.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import BasicInput from "../../../components/FormInput/BasicInput/BasicInput";
-import PhoneInput from "../../../components/FormInput/PhoneInput/PhoneInput";
 import MaskedInput from "react-text-mask";
+import { authModel } from "../../../services/authModel";
 
 const SignUpClient = () => {
   const schema = yup
     .object()
     .shape({
-      firstName: yup.string().trim().required("Введите имя"),
-      surName: yup.string().trim().required("Введите фамилию"),
+      name: yup.string().trim().required("Введите имя"),
+      surname: yup.string().trim().required("Введите фамилию"),
       phone: yup
         .string()
         .required("Введите номер телефона")
@@ -22,7 +22,7 @@ const SignUpClient = () => {
       email: yup
         .string()
         .required("Введите почту")
-        .matches(/^\S+@\S+\.\S+$/, "Неверный формат почты"),
+        .matches(/^\S+@\S+\.\S+$/, "Введите почту в правильном формате"),
       password: yup.string().required("Введите пароль"),
       checkbox: yup.bool().oneOf([true], "Требуется согласие с условиями").required("Требуется согласие с условиями"),
     })
@@ -44,7 +44,12 @@ const SignUpClient = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const registration = async (data: any) => {
-    console.log(data);
+    delete data.checkbox;
+    const {success} = await authModel.registration(data);
+    if(success){
+      alert(success);
+      console.log(data);
+    }
   };
 
   return (
@@ -57,18 +62,18 @@ const SignUpClient = () => {
         name="Имя"
         type="text"
         register={register}
-        registerName="firstName"
+        registerName="name"
         rules={{ required: true }}
       />
-      <p>{errors.firstName?.message}</p>
+      <p>{errors.name?.message}</p>
       <BasicInput
         name="Фамилия"
         type="text"
         register={register}
-        registerName="surName"
+        registerName="surname"
         rules={{ required: true }}
       />
-      <p>{errors.surName?.message}</p>
+      <p>{errors.surname?.message}</p>
 
       <Controller
         control={control}
@@ -135,8 +140,7 @@ const SignUpClient = () => {
         className={styles.button}
         type="submit"
         value="Зарегистрироваться"
-        // style={{cursor: isValid ? "pointer" : "not-allowed"}}
-        // disabled={!isValid}
+        style={{opacity: isValid ? 1 : 0.5}}
       />
     </form>
   );
