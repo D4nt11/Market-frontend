@@ -92,3 +92,18 @@ label {
 legend {
 	display: block;
 }
+
+
+/* ------------------- */
+
+:root{
+
+	/* colors */
+	--background-color: #f3f3f3;
+	--main-color: #ffffff;
+	--accent-color: #005675;
+	--header-accent-color: #f0f2f5;
+	--text-color: #333333;
+	--form-text-color: #666666;
+	--form-input-color: #66666659;
+}
