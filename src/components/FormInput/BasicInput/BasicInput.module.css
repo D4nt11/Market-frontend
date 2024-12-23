@@ -3,14 +3,14 @@
     flex-direction: column;
 
     label{
-        font-size: 10px;
+        font-size: 12px;
         margin-top: 15px;
-        color: #666666;
+        color: var(--form-text-color);
     }
 
     input{
         outline: none;
-        border: 1px solid #66666659;
+        border: 1px solid var(--form-input-color);
         border-radius: 6px;
         width: 400px;
         height: 35px;

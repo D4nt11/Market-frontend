@@ -1,14 +1,14 @@
+import { useClientStore } from "../store/useClientStore.ts";
+import { useSellerStore } from "../store/useSellerStore.ts";
 import { AuthService } from "./authService";
-
-import { useAuthStore } from "../store/useAuthStore.tsx";
 import { removeToken, setToken } from "./tokenService.ts";
 
 export const authModel = {
-  async login(data: any) {
+  async loginClient(data: any) {
     try {
-      const response = await AuthService.login(data);
+      const response = await AuthService.loginClient(data);
       setToken(response.data.token.accessToken, response.data.refreshToken);
-      useAuthStore.getState().login();
+      useClientStore.getState().login();
       return { success: true };
     } catch {
       return {
@@ -18,11 +18,39 @@ export const authModel = {
     }
   },
 
-  async registration(data: any) {
+  async registrationClient(data: any) {
     try {
-      const response = await AuthService.registration(data);
+      const response = await AuthService.registrationCLient(data);
       setToken(response.data.accessToken, response.data.refreshToken);
-      useAuthStore.getState().login();
+      useClientStore.getState().login();
+      return { success: true };
+    } catch {
+      return {
+        success: false,
+        message: "Login failed",
+      };
+    }
+  },
+
+  async loginSeller(data: any) {
+    try {
+      const response = await AuthService.loginSeller(data);
+      setToken(response.data.token.accessToken, response.data.refreshToken);
+      useSellerStore.getState().login();
+      return { success: true };
+    } catch {
+      return {
+        success: false,
+        message: "Login failed",
+      };
+    }
+  },
+
+  async registrationSeller(data: any) {
+    try {
+      const response = await AuthService.registrationSeller(data);
+      setToken(response.data.accessToken, response.data.refreshToken);
+      useSellerStore.getState().login();
       return { success: true };
     } catch {
       return {
@@ -34,6 +62,6 @@ export const authModel = {
 
   async logout() {
     removeToken(true);
-    useAuthStore.getState().logout();
+    useSellerStore.getState().logout();
   },
 };

@@ -3,14 +3,18 @@ import styles from "./SignUpSeller.module.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import BasicInput from "../../../components/FormInput/BasicInput/BasicInput";
-import MaskedInput from "react-text-mask";
+import { authModel } from "../../../services/authModel";
+import PhoneInput from "../../../components/FormInput/PhoneInput/PhoneInput";
+import PswdInput from "../../../components/FormInput/PswdInput/PswdInput";
 
 const SignUpSeller = () => {
   const schema = yup
     .object()
     .shape({
-      firstName: yup.string().trim().required("Введите имя"),
-      surName: yup.string().trim().required("Введите фамилию"),
+      shopName: yup.string().trim().required("Введите название магазина"),
+      name: yup.string().trim().required("Введите имя"),
+      surname: yup.string().trim().required("Введите фамилию"),
+      patronymic: yup.string().trim(),
       phone: yup
         .string()
         .required("Введите номер телефона")
@@ -24,6 +28,7 @@ const SignUpSeller = () => {
         .matches(/^\S+@\S+\.\S+$/, "Введите почту в правильном формате"),
       password: yup.string().required("Введите пароль"),
       checkbox: yup.bool().oneOf([true], "Требуется согласие с условиями").required("Требуется согласие с условиями"),
+      INN: yup.string().required('Введите ИНН').trim().matches(/^\d{10}/, "Введите ИНН в правильном формате(10 цифр)"),
     })
     .required();
 
@@ -36,7 +41,11 @@ const SignUpSeller = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const registration = async (data: any) => {
-    console.log(data);
+    delete data.checkbox;
+    const {success} = await authModel.registrationSeller(data);
+    if(success){
+      alert(success);
+    }
   };
 
   return (
@@ -46,58 +55,47 @@ const SignUpSeller = () => {
         Уже есть аккаунт? <span>Войти</span>
       </h5>
       <BasicInput
+        name="Название магазина"
+        type="text"
+        register={register}
+        registerName="shopName"
+        rules={{ required: true }}
+      />
+      <p className={styles.p}>{errors.shopName?.message}</p>
+      <BasicInput
         name="Имя"
         type="text"
         register={register}
-        registerName="firstName"
+        registerName="name"
         rules={{ required: true }}
       />
-      <p>{errors.firstName?.message}</p>
+      <p className={styles.p}>{errors.name?.message}</p>
       <BasicInput
         name="Фамилия"
         type="text"
         register={register}
-        registerName="surName"
+        registerName="surname"
         rules={{ required: true }}
       />
-      <p>{errors.surName?.message}</p>
-
+      <p className={styles.p}>{errors.surname?.message}</p>
+      <BasicInput
+        name="Отчество(если есть)"
+        type="text"
+        register={register}
+        registerName="patronymic"
+        rules={{ }}
+      />
+      <p className={styles.p}>{errors.patronymic?.message}</p>
       <Controller
         control={control}
         name="phone"
         render={({ field }) => (
           <div className={styles.PhoneInput}>
-            <label htmlFor="phoneInput">Телефон</label>
-            <MaskedInput
-              id="phoneInput" 
-              {...field}
-              mask={[
-                "+",
-                "7",
-                " ",
-                "(",
-                /\d/,
-                /\d/,
-                /\d/,
-                ")",
-                " ",
-                /\d/,
-                /\d/,
-                /\d/,
-                "-",
-                /\d/,
-                /\d/,
-                "-",
-                /\d/,
-                /\d/,
-              ]}
-              placeholder="+7 (xxx) xxx-xx-xx"
-              onChange={(e) => field.onChange(e.target.value)}
-            />
+            <PhoneInput field={field} name="Телефон"/>
           </div>
         )}
       />
-      <p>{errors.phone?.message}</p>
+      <p className={styles.p}>{errors.phone?.message}</p>
       <BasicInput
         name="Почта"
         type="email"
@@ -105,15 +103,22 @@ const SignUpSeller = () => {
         registerName="email"
         rules={{ required: true }}
       />
-      <p>{errors.email?.message}</p>
-      <BasicInput
+      <p className={styles.p}>{errors.email?.message}</p>
+      <PswdInput
         name="Пароль"
-        type="password"
         register={register}
         registerName="password"
         rules={{ required: true }}
       />
-      <p>{errors.password?.message}</p>
+      <p className={styles.p}>{errors.password?.message}</p>
+      <BasicInput
+        name="ИНН"
+        type="text"
+        register={register}
+        registerName="INN"
+        rules={{ required: true }}
+      />
+      <p className={styles.p}>{errors.INN?.message}</p>
       <div className={styles.checkboxContainer}>
         <input {...register("checkbox", {required: true})} type="checkbox" />
         <h5 className={styles.h5}>
@@ -122,7 +127,7 @@ const SignUpSeller = () => {
           <span className={styles.span}>Политикой конфиденциальности.</span>
         </h5>
       </div>
-        <p style={{marginBottom: "20px"}}>{errors.checkbox?.message}</p>
+        <p className={styles.p} style={{marginBottom: "20px"}}>{errors.checkbox?.message}</p>
       <input
         className={styles.button}
         type="submit"
