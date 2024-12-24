@@ -1,6 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const toProfile = () =>{
+    navigate("/profile");
+  }
+
+
   return (
     <div className={styles.headerContainer}>
       <div className={styles.header}>

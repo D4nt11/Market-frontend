@@ -13,6 +13,8 @@ import SignInClient from "./pages/Auth/SignInClient/SignInClient";
 import SignInSeller from "./pages/Auth/SignInSeller/SignInSeller";
 import { useEffect } from "react";
 import ClientProfile from "./pages/Profile/ClientProfile/ClientProfile";
+import SellerProfile from "./pages/Profile/SellerProfile/SellerProfile";
+import SellerProducts from "./pages/SellerProducts/SellerProducts";
 
 const SwitchBackgroundWrapper = ({ children }: any) => {
   const location = useLocation();
@@ -23,9 +25,9 @@ const SwitchBackgroundWrapper = ({ children }: any) => {
     if (root && body) {
       if (
         location.pathname === "/client/sign-in" ||
-        "/client/sign-up" ||
-        "/seller/sign-in" ||
-        "/seller/sign-up"
+        location.pathname === "/client/sign-up" ||
+        location.pathname === "/seller/sign-in" ||
+        location.pathname === "/seller/sign-up"
       ) {
         root.style.backgroundColor = `var(--main-color)`;
         body.style.backgroundColor = `var(--main-color)`;
@@ -42,32 +44,29 @@ const SwitchBackgroundWrapper = ({ children }: any) => {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+    <SwitchBackgroundWrapper>
+    <Layout />
+    </SwitchBackgroundWrapper>),
     errorElement: <Error />,
     children: [
       ///Client//////
       {
         path: "client/sign-up",
         element: (
-          <SwitchBackgroundWrapper>
             <SignUpClient />
-          </SwitchBackgroundWrapper>
         ),
       },
       {
         path: "client/sign-in",
         element: (
-          <SwitchBackgroundWrapper>
             <SignInClient />
-          </SwitchBackgroundWrapper>
         ),
       },
       {
         path: "client/profile",
         element:(
-          <SwitchBackgroundWrapper>
             <ClientProfile />
-          </SwitchBackgroundWrapper>
         ),
       },
 
@@ -75,17 +74,25 @@ const router = createBrowserRouter([
       {
         path: "seller/sign-up",
         element: (
-          <SwitchBackgroundWrapper>
             <SignUpSeller />
-          </SwitchBackgroundWrapper>
         ),
       },
       {
         path: "seller/sign-in",
         element: (
-          <SwitchBackgroundWrapper>
             <SignInSeller />
-          </SwitchBackgroundWrapper>
+        ),
+      },
+      {
+        path: "seller/profile",
+        element:(
+            <SellerProfile />
+        ),
+      },
+      {
+        path: "seller/products",
+        element:(
+            <SellerProducts />
         ),
       },
     ],
@@ -93,32 +100,5 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")!).render(
-  <RouterProvider router={router}></RouterProvider>
+  <RouterProvider router={router} />
 );
-
-// const switchBackgrounnd = () => {
-//   const root = document.getElementById("root");
-//   const url = window.location.href;
-//   url === "http://localhost:5173/client/sign-up"
-//     ? (root.style.background = `var(--main-color)`)
-//     : (root.style.background = `var(--background-color)`);
-// };
-
-// const location = useLocation();
-
-// useEffect(() => {
-//   const switchBackground = () => {
-//     const root = document.getElementById("root");
-//     console.log(root)
-//     if (!root) return;
-
-//     const backgroundColorMap: { [key: string]: string } = {
-//       "http://localhost:5173/client/sign-up": "var(--main-color)",
-//     };
-
-//     root.style.backgroundColor =
-//       backgroundColorMap[location.pathname] || "var(--background-color)";
-//   };
-
-//   switchBackground();
-// }, [location]);
