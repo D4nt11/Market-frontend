@@ -5,8 +5,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import BasicInput from "../../../components/FormInput/BasicInput/BasicInput";
 import { authModel } from "../../../services/authModel";
 import PswdInput from "../../../components/FormInput/PswdInput/PswdInput";
+import { useNavigate } from "react-router-dom";
 
 const SignInClient = () => {
+
+  const navigate = useNavigate();
+  const toSignUp = () =>{
+    navigate(`/client/sign-up`, { replace: true });
+  }
+
   const schema = yup
     .object()
     .shape({
@@ -34,7 +41,7 @@ const SignInClient = () => {
     <form onSubmit={handleSubmit(authorization)} className={styles.main}>
       <h1>Авторизация</h1>
       <h5>
-        Нет аккаунта? <span>Зарегистрироваться</span>
+        Нет аккаунта? <span onClick={toSignUp}>Зарегистрироваться</span>
       </h5>
       <BasicInput
         name="Почта"
