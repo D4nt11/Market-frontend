@@ -6,8 +6,15 @@ import BasicInput from "../../../components/FormInput/BasicInput/BasicInput";
 import { authModel } from "../../../services/authModel";
 import PhoneInput from "../../../components/FormInput/PhoneInput/PhoneInput";
 import PswdInput from "../../../components/FormInput/PswdInput/PswdInput";
+import { useNavigate } from "react-router-dom";
 
 const SignUpClient = () => {
+
+  const navigate = useNavigate();
+  const toSignIn = () =>{
+    navigate(`/client/sign-in`, {replace: true})
+  }
+
   const schema = yup
     .object()
     .shape({
@@ -48,7 +55,7 @@ const SignUpClient = () => {
     <form onSubmit={handleSubmit(registration)} className={styles.main}>
       <h1>Регистрация</h1>
       <h5>
-        Уже есть аккаунт? <span>Войти</span>
+        Уже есть аккаунт? <span onClick={toSignIn}>Войти</span>
       </h5>
       <BasicInput
         name="Имя"

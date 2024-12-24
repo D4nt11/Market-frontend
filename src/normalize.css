@@ -98,6 +98,7 @@ legend {
 
 :root{
 
+
 	/* colors */
 	--background-color: #f3f3f3;
 	--main-color: #ffffff;
@@ -107,3 +108,7 @@ legend {
 	--form-text-color: #666666;
 	--form-input-color: #66666659;
 }
+
+/* #root{
+	background-color: var(--background-color);
+} */
