@@ -109,6 +109,7 @@ legend {
 	--form-input-color: #66666659;
 }
 
-/* #root{
-	background-color: var(--background-color);
+/* #root, body{
+	background-color: var(--main-color);
+	height: 100vh;
 } */

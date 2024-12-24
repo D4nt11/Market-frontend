@@ -1,0 +1,30 @@
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--main-color);
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: auto;
+    margin-top: 100px;
+    align-items: center;
+    padding-bottom: 50px;
+
+    .button {
+      background-color: var(--accent-color);
+      opacity: 0.5;
+      color: var(--main-color);
+      border-radius: 5px;
+      height: 35px;
+      width: 400px;
+      padding: 0px 10px;
+    }
+  }
+
+  .p {
+    font-size: 12px;
+    color: red;
+  }
+}

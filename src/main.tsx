@@ -12,6 +12,32 @@ import SignUpSeller from "./pages/Auth/SignUpSeller/SignUpSeller";
 import SignInClient from "./pages/Auth/SignInClient/SignInClient";
 import SignInSeller from "./pages/Auth/SignInSeller/SignInSeller";
 import { useEffect } from "react";
+import ClientProfile from "./pages/Profile/ClientProfile/ClientProfile";
+
+const SwitchBackgroundWrapper = ({ children }: any) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const root = document.getElementById("root");
+    const body = document.getElementsByTagName("body")[0];
+    if (root && body) {
+      if (
+        location.pathname === "/client/sign-in" ||
+        "/client/sign-up" ||
+        "/seller/sign-in" ||
+        "/seller/sign-up"
+      ) {
+        root.style.backgroundColor = `var(--main-color)`;
+        body.style.backgroundColor = `var(--main-color)`;
+      } else {
+        root.style.backgroundColor = `var(--background-color)`;
+        body.style.backgroundColor = `var(--background-color)`;
+      }
+    }
+  }, [location]);
+
+  return children;
+};
 
 const router = createBrowserRouter([
   {
@@ -22,21 +48,45 @@ const router = createBrowserRouter([
       ///Client//////
       {
         path: "client/sign-up",
-        element: <SignUpClient />,
+        element: (
+          <SwitchBackgroundWrapper>
+            <SignUpClient />
+          </SwitchBackgroundWrapper>
+        ),
       },
       {
         path: "client/sign-in",
-        element: <SignInClient />,
+        element: (
+          <SwitchBackgroundWrapper>
+            <SignInClient />
+          </SwitchBackgroundWrapper>
+        ),
+      },
+      {
+        path: "client/profile",
+        element:(
+          <SwitchBackgroundWrapper>
+            <ClientProfile />
+          </SwitchBackgroundWrapper>
+        ),
       },
 
       ///Seller//////
       {
         path: "seller/sign-up",
-        element: <SignUpSeller />,
+        element: (
+          <SwitchBackgroundWrapper>
+            <SignUpSeller />
+          </SwitchBackgroundWrapper>
+        ),
       },
       {
         path: "seller/sign-in",
-        element: <SignInSeller />,
+        element: (
+          <SwitchBackgroundWrapper>
+            <SignInSeller />
+          </SwitchBackgroundWrapper>
+        ),
       },
     ],
   },
@@ -61,7 +111,7 @@ createRoot(document.getElementById("root")!).render(
 //     const root = document.getElementById("root");
 //     console.log(root)
 //     if (!root) return;
-    
+
 //     const backgroundColorMap: { [key: string]: string } = {
 //       "http://localhost:5173/client/sign-up": "var(--main-color)",
 //     };
