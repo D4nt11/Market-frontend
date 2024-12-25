@@ -11,6 +11,7 @@ const SellerProducts = () => {
             alt=""
           />
         </div>
+        <h1>SellerName</h1>
       </section>
       <section className={styles.rightSection}></section>
     </div>

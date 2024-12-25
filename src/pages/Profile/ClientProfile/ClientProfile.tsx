@@ -6,6 +6,8 @@ import BasicInput from "../../../components/FormInput/BasicInput/BasicInput";
 import PhoneInput from "../../../components/FormInput/PhoneInput/PhoneInput";
 import PswdInput from "../../../components/FormInput/PswdInput/PswdInput";
 import api from "../../../http/axios";
+import { useNavigate } from "react-router-dom";
+import { authModel } from "../../../services/authModel";
 
 const ClientProfile = () => {
   const schema = yup.object().shape({
@@ -52,6 +54,13 @@ const ClientProfile = () => {
     return response;
   };
 
+  const navigate = useNavigate();
+  const logout = () =>{
+    authModel.logout();
+    alert('logout')
+    navigate("/home")
+  }
+
   return (
     <div className={styles.profileContainer}>
       <div className={styles.buttons}>
@@ -62,7 +71,7 @@ const ClientProfile = () => {
           <button className={styles.buttonsButton}>
             <img className={styles.buttonsButtonImage} src="../../../../public/icons/theme.svg" alt="" />
           </button>
-          <button className={styles.buttonsButton}>
+          <button className={styles.buttonsButton} onClick={logout}>
             <img className={styles.buttonsButtonImage} src="../../../../public/icons/exit.svg" alt="" />
           </button>
         </div>

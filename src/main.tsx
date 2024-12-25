@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import ClientProfile from "./pages/Profile/ClientProfile/ClientProfile";
 import SellerProfile from "./pages/Profile/SellerProfile/SellerProfile";
 import SellerProducts from "./pages/SellerProducts/SellerProducts";
+import Home from "./pages/Home/Home";
 
 const SwitchBackgroundWrapper = ({ children }: any) => {
   const location = useLocation();
@@ -50,6 +51,11 @@ const router = createBrowserRouter([
     </SwitchBackgroundWrapper>),
     errorElement: <Error />,
     children: [
+      {
+        path: "home",
+        element: <Home />,
+      },
+
       ///Client//////
       {
         path: "client/sign-up",

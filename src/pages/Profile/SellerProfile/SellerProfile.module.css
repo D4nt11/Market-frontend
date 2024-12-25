@@ -9,6 +9,8 @@
     border-radius: 25px 25px 0px 0px;
     height: calc(100vh - 160px);
     overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   
   
     .buttons{
@@ -90,3 +92,7 @@
     }
   }
   
+
+  .profileContainer::-webkit-scrollbar{
+    display: none;
+  }

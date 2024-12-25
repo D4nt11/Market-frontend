@@ -7,7 +7,7 @@ export const authModel = {
   async loginClient(data: any) {
     try {
       const response = await AuthService.loginClient(data);
-      setToken(response.data.token.accessToken, response.data.refreshToken);
+      setToken(response.data.accessToken, response.data.refreshToken);
       useClientStore.getState().login();
       return { success: true };
     } catch {
@@ -35,7 +35,7 @@ export const authModel = {
   async loginSeller(data: any) {
     try {
       const response = await AuthService.loginSeller(data);
-      setToken(response.data.token.accessToken, response.data.refreshToken);
+      setToken(response.data.accessToken, response.data.refreshToken);
       useSellerStore.getState().login();
       return { success: true };
     } catch {
@@ -63,5 +63,6 @@ export const authModel = {
   async logout() {
     removeToken(true);
     useSellerStore.getState().logout();
+    useClientStore.getState().logout();
   },
 };
