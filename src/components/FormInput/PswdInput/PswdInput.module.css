@@ -1,4 +1,4 @@
-.PhoneInput{
+.PswdInput{
     display: flex;
     flex-direction: column;
     position: relative;
@@ -16,7 +16,22 @@
         width: 400px;
         height: 35px;
         margin-top: 2px;
-        padding: 0px 5px;
+        padding: 0px 40px 0px 5px;
         font-size: 15px;
     }
+}
+
+.passwordControl{
+    position: absolute;
+	top: 42px;
+	right: 10px;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background: url(../../../../public/icons/viewEyeDark.svg) 0 0 no-repeat;
+}
+
+.passwordControl.view {
+	background: url(../../../../public/icons/noViewEyeDark.svg) 0 0 no-repeat;
+    top: 39px;
 }

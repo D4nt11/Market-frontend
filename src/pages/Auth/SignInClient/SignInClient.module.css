@@ -42,18 +42,15 @@
         }
     }
 
-    .h5{
-        margin-top: 20px;
-    }
-
     .button{
         background-color: var(--accent-color);
         opacity: 0.5;
         color: var(--main-color);
         border-radius: 5px;
-        height: 35px;
         width: 400px;
+        height: 35px;
         padding: 0px 10px;
+        margin-top: 20px;
     }
 }
 

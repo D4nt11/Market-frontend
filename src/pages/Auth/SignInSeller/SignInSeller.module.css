@@ -42,10 +42,6 @@
         }
     }
 
-    .h5{
-        margin-top: 20px;
-    }
-
     .button{
         background-color: var(--accent-color);
         opacity: 0.5;
@@ -54,6 +50,7 @@
         height: 35px;
         width: 400px;
         padding: 0px 10px;
+        margin-top: 20px;
     }
 }
 
