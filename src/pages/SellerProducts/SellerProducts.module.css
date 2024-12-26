@@ -16,14 +16,7 @@
     align-items: center;
     width: 30%;
     height: 100%;
-    background-color: red;
-}
-
-.rightSection{
-    display: flex;
-    width: 70%;
-    height: 100%;
-    background-color: green;
+    background-color: var(--main-color);
 }
 
 .profileImage{
@@ -43,6 +36,67 @@
     }
   }
 
-  .progress{
-    color: yellow;
-  }
+  /* .rating{
+    
+  } */
+
+.contacts{
+  margin-top: 30px;
+} 
+
+.email{
+  margin-top: 7px;
+}
+
+
+
+
+.rightSection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  height: 100%;
+  background-color: var(--main-color);
+}
+
+.inputContainer{
+  position: relative;
+  margin-top: 50px;
+}
+
+.sellerInput{
+  width: 640px;
+  height: 40px;
+  background: var(--header-accent-color);
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 10px 40px;
+  position: relative;
+}
+
+.searchImg{
+  height: 26px;
+  position: absolute;
+  left: 5px;
+  top: 16px;
+}
+
+.sellerCatalog{
+  background-color: var(--background-color);
+  width: 640px;
+  height: calc(100vh - 260px);
+  border-radius: 25px;
+  margin: 20px 0px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.sellerCatalog::-webkit-scrollbar{
+  display: none;
+}
