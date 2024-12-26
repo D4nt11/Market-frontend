@@ -52,6 +52,7 @@ const SignUpSeller = () => {
     const {success} = await authModel.registrationSeller(data);
     if(success){
       alert(success);
+      navigate("/seller/profile")
     }
   };
 

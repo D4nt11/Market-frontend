@@ -48,6 +48,7 @@ const SignUpClient = () => {
     const {success} = await authModel.registrationClient(data);
     if(success){
       alert(success);
+      navigate("/client/profile")
     }
   };
 

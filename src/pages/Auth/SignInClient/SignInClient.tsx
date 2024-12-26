@@ -34,6 +34,7 @@ const SignInClient = () => {
     const {success} = await authModel.loginClient(data);
     if(success){
       alert(success);
+      navigate("/client/profile")
     }
   };
 

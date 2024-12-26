@@ -1,0 +1,71 @@
+.mainContainer{
+    max-width: 950px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    width: 100%;
+    background-color: var(--main-color);
+    display: flex;
+}
+
+.imgContainer{
+    width: 500px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img{
+    width: 480px;
+    height: 480px;
+}
+
+.infoContainer{
+    width: 410px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.h1{
+    width: 380px;
+    text-align: center;
+}
+
+.price{
+    width: 380px;
+    display: flex;
+    justify-content: end;
+    padding-right: 20px;
+}
+
+.ratingContainer{
+    width: 380px;
+    display: flex;
+    justify-content: start;
+}
+
+.ratingCount{
+    margin-right: 10px;
+}
+
+.ratingStars{
+    
+}
+
+.descriptionContainer{
+    width: 380px;
+}
+
+.h3{
+    width: 380px;
+}
+
+.description{
+    width: 380px;
+}

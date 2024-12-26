@@ -34,6 +34,7 @@ const SignInSeller = () => {
     const {success} = await authModel.loginSeller(data);
     if(success){
       alert(success);
+      navigate("/seller/profile")
     }
   };
 

@@ -1,20 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CardProduct.module.css";
 import { useNavigate } from "react-router-dom";
+import api from "../../../http/axios";
+import { useClientStore } from "../../../store/useClientStore";
 
-export interface product {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  img: string;
-  isAvailable: boolean;
-  isPopular: boolean;
-  isDeleted: boolean;
-  createdAt: string;
-  sellerId: string;
-  productCategory: any;
-}
+// export interface product {
+//   id: string;
+//   name: string;
+//   description: string;
+//   price: number;
+//   img: string;
+//   isAvailable: boolean;
+//   isPopular: boolean;
+//   isDeleted: boolean;
+//   createdAt: string;
+//   sellerId: string;
+//   productCategory: any;
+// }
 //Example//////////////
 // [
 //   {
@@ -54,6 +56,20 @@ const CardProduct = ({...product}) => {
     navigate(`products/${product.id}`)
   }
 
+  const addToCart = async () =>{
+    if(useClientStore.getState().isClientAuth){
+      const data = {
+        clientId: useClientStore.getState().clientId,
+        productId: product.id,
+      }
+      await api.post('/cart/add', data)
+      alert('succes')
+    }
+    else{
+      alert('need auth')
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer} onClick={toProduct}>
@@ -66,7 +82,7 @@ const CardProduct = ({...product}) => {
         </div>
       </div>
       <div className={styles.buttons}>
-        <button className={styles.button}>В корзину</button>
+        <button className={styles.button} onClick={addToCart}>В корзину</button>
         <button className={styles.button}>Заказать</button>
       </div>
     </div>
