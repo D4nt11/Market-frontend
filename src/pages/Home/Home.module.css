@@ -1,17 +1,18 @@
 .homeContainer{
     display: flex;
-    justify-content: space-around;
+    align-items: start ;
     background-color: var(--main-color);
     max-width: 950px;
     margin: auto;
     margin-top: 50px;
     border-radius: 25px 25px 0px 0px;
-    height: calc(100vh - 160px);
+    height: calc(100vh - 130px);
     overflow: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
     padding: 10px;
     flex-wrap: wrap;
+    gap: 43px;
 }
 
 .homeContainer::-webkit-scrollbar{
