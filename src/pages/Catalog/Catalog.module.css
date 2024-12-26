@@ -1,0 +1,12 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 950px;
+    margin: auto;
+    margin-bottom: 30px;
+    height: calc(100vh - 140px);
+    background-color: var(--main-color);
+    border-radius: 25px;
+    margin-top: 20px;
+}

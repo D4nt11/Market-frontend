@@ -27,6 +27,7 @@
     margin: 7px;
     padding: 2px 4px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .headerMain{
@@ -47,6 +48,7 @@
         color: var(--accent-color);
         font-size: 38px;
         margin: 0px 5px;
+        cursor: pointer;
     }
 
     .headerInputContainer{
@@ -55,7 +57,7 @@
         
 
         .headerInput{
-            width: 600px;
+            width: 550px;
             height: 40px;
             background: var(--header-accent-color);
             border-radius: 5px;
@@ -71,11 +73,14 @@
         }
 
        .button{
-            width: 30px;
+            width: 60px;
             height: 30px;
             position: absolute;
             right: 10px;
             top: 15px;
+            background-color: var(--accent-color);
+            color: var(--main-color);
+            border-radius: 5px;
             /* background: url(../../../public/icons/catalog.svg) 0 0 no-repeat; */
 
             .img3{
@@ -101,8 +106,8 @@
             width: 30px;
             height: 30px;
             position: absolute;
-            left: 4px;
-            bottom: 3px;
+            left: 5px;
+            bottom: 5px;
         }
     }
 }

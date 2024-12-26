@@ -16,6 +16,9 @@ import ClientProfile from "./pages/Profile/ClientProfile/ClientProfile";
 import SellerProfile from "./pages/Profile/SellerProfile/SellerProfile";
 import SellerProducts from "./pages/SellerProducts/SellerProducts";
 import Home from "./pages/Home/Home";
+import Catalog from "./pages/Catalog/Catalog";
+import SellerCatalog from "./pages/SellerCatalog/SellerCatalog";
+import SingleProduct from "./pages/SingleProduct/SingleProduct";
 
 const SwitchBackgroundWrapper = ({ children }: any) => {
   const location = useLocation();
@@ -52,8 +55,24 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
+        index: true,
+        element: <Home />,
+      },
+      {
         path: "home",
         element: <Home />,
+      },
+      {
+        path: "catalog",
+        element: <Catalog />,
+      },
+      {
+        path: "catalog/seller",
+        element: <SellerCatalog />
+      },
+      {
+        path: 'test',
+        element: <SingleProduct />
       },
 
       ///Client//////

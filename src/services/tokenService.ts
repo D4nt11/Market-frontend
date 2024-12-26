@@ -25,13 +25,14 @@ export const getRefreshToken = () => {
 };
 
 interface jwt extends JwtPayload {
-    type: string,
+    type: string;
+    id: string;
 }
 
 export const decodeJwt = () => {
   const token = getToken();
   if (token) {
     const decode = jwtDecode<jwt>(token);
-    return decode.type;
+    return decode;
   }
 };
