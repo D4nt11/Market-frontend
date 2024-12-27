@@ -8,6 +8,8 @@ import PswdInput from "../../../components/FormInput/PswdInput/PswdInput";
 import api from "../../../http/axios";
 import { useNavigate } from "react-router-dom";
 import { authModel } from "../../../services/authModel";
+import { useClientStore } from "../../../store/useClientStore";
+import { useEffect } from "react";
 
 const ClientProfile = () => {
   const schema = yup.object().shape({
@@ -25,10 +27,6 @@ const ClientProfile = () => {
       .required("Введите почту")
       .matches(/^\S+@\S+\.\S+$/, "Введите почту в правильном формате"),
     password: yup.string().required("Введите пароль"),
-    checkbox: yup
-      .bool()
-      .oneOf([true], "Требуется согласие с условиями")
-      .required("Требуется согласие с условиями"),
   });
 
   const {
@@ -36,43 +34,68 @@ const ClientProfile = () => {
     handleSubmit,
     formState: { errors, isValid },
     control,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      name: "",
-      surname: "",
-      phone: "",
-      email: "",
-      password: "",
-      checkbox: false,
-    },
   });
 
-  const updateData = async () => {
-    const response = await api.get("/clients/profile");
-    console.log(response);
-    return response;
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const clientResponse = await api.get("/clients/profile");
+        delete clientResponse.data.password;
+        reset(clientResponse.data);
+      } catch (error) {
+        console.error("Ошибка загрузки данных:", error);
+      }
+    };
+
+    if (useClientStore.getState().isClientAuth) {
+      fetchData();
+    }
+  }, [reset]);
+
+  const updateData = (data: any) =>{
+    if(isValid && useClientStore.getState().isClientAuth){
+      api.post("/auth/client/refresh", data)
+    }
+  }
 
   const navigate = useNavigate();
-  const logout = () =>{
+  const logout = () => {
     authModel.logout();
-    alert('logout')
-    navigate("/home")
-  }
+    alert("logout");
+    navigate("/home");
+  };
+
+  const back = () => {
+    navigate("/home");
+  };
 
   return (
     <div className={styles.profileContainer}>
       <div className={styles.buttons}>
-        <button className={styles.buttonsButton}>
-          <img className={styles.buttonsButtonImage} src="../../../../public/icons/back.svg" alt="" />
+        <button className={styles.buttonsButton} onClick={back}>
+          <img
+            className={styles.buttonsButtonImage}
+            src="../../../../public/icons/back.svg"
+            alt=""
+          />
         </button>
         <div className={styles.rightButtons}>
           <button className={styles.buttonsButton}>
-            <img className={styles.buttonsButtonImage} src="../../../../public/icons/theme.svg" alt="" />
+            <img
+              className={styles.buttonsButtonImage}
+              src="../../../../public/icons/theme.svg"
+              alt=""
+            />
           </button>
           <button className={styles.buttonsButton} onClick={logout}>
-            <img className={styles.buttonsButtonImage} src="../../../../public/icons/exit.svg" alt="" />
+            <img
+              className={styles.buttonsButtonImage}
+              src="../../../../public/icons/exit.svg"
+              alt=""
+            />
           </button>
         </div>
       </div>
@@ -130,7 +153,7 @@ const ClientProfile = () => {
           className={styles.button}
           type="submit"
           value="Обновить данные"
-          style={{ opacity: isValid ? 1 : 0.5 , marginTop: "30px"}}
+          style={{ opacity: isValid ? 1 : 0.5, marginTop: "30px" }}
         />
       </form>
     </div>

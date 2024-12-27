@@ -35,7 +35,7 @@ const SignUpSeller = () => {
         .matches(/^\S+@\S+\.\S+$/, "Введите почту в правильном формате"),
       password: yup.string().required("Введите пароль"),
       checkbox: yup.bool().oneOf([true], "Требуется согласие с условиями").required("Требуется согласие с условиями"),
-      INN: yup.string().required('Введите ИНН').trim().matches(/^\d{10}/, "Введите ИНН в правильном формате(10 цифр)"),
+      INN: yup.string().required('Введите ИНН').trim().max(10).matches(/^\d{10}/, "Введите ИНН в правильном формате(10 цифр)"),
     })
     .required();
 

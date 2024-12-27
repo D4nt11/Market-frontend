@@ -100,3 +100,45 @@
 .sellerCatalog::-webkit-scrollbar{
   display: none;
 }
+
+
+.addContainer{
+  width: 200px;
+  height: 300px;
+  padding: 5px 5px 0px 5px;
+  background-color: var(--main-color);
+  -webkit-box-shadow: 3px 1px 9px 3px rgba(34, 60, 80, 0.1);
+  -moz-box-shadow: 3px 1px 9px 3px rgba(34, 60, 80, 0.1);
+  box-shadow: 3px 1px 9px 3px rgba(34, 60, 80, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.vector{
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  background-color: var(--main-color);
+}
+
+
+.addMenu{
+  display: flex;
+  align-items:  center;
+  background-color: var(--main-color);
+  width: 950px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 25px 25px 0px 0px;
+  height: calc(100vh - 130px);
+  overflow: auto;
+  position: absolute;
+  justify-content: center;
+ 
+}

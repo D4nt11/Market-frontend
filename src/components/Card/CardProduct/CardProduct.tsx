@@ -53,7 +53,7 @@ const CardProduct = ({...product}) => {
 
   const navigate = useNavigate()
   const toProduct = () => {
-    navigate(`products/${product.id}`)
+    navigate(`/products/${product.id}`)
   }
 
   const addToCart = async () =>{

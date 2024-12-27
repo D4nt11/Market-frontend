@@ -75,7 +75,7 @@ const Header = () => {
               placeholder="Искать на Bazario"
             />
             <img className={styles.img2} src="../../../public/icons/search.svg" alt="" />
-            <button className={styles.button} type="button" name="" id={styles.btn1} onClick={toCatalog}>Найти</button>
+            <button className={styles.button} type="button" name="" id={styles.btn1}>Найти</button>
           </div>          
             <button className={styles.headerButton} type="button" name="" id={styles.btn1} onClick={toCatalog}>
               <img className={styles.img3} src="../../../public/icons/catalog.svg" alt="" />

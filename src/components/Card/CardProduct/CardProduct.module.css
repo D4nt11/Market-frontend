@@ -18,6 +18,10 @@
   background-color: var(--background-color);
   border-radius: 16px;
   cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .info {

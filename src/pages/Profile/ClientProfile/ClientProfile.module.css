@@ -1,6 +1,6 @@
 .profileContainer {
   display: flex;
-  align-items:  center;
+  align-items: center;
   flex-direction: column;
   background-color: var(--main-color);
   max-width: 950px;
@@ -9,9 +9,12 @@
   border-radius: 25px 25px 0px 0px;
   height: calc(100vh - 160px);
   overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
 
-  .buttons{
+
+  .buttons {
     height: 35px;
     width: 100%;
     max-width: 950px;
@@ -21,21 +24,21 @@
     padding: 20px;
     margin-top: 15px;
   }
-  
-  .buttonsButton{
+
+  .buttonsButton {
     height: 35px;
     width: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
-  .buttonsButtonImage{
+
+  .buttonsButtonImage {
     height: 20px;
     width: 20px;
   }
 
-  .rightButtons{
+  .rightButtons {
     height: 35px;
     width: 85px;
     display: flex;
@@ -43,13 +46,13 @@
     justify-content: space-between;
 
 
-    .buttonsButtonImage{
+    .buttonsButtonImage {
       height: 23px;
       width: 23px;
     }
   }
 
-  .profileImage{
+  .profileImage {
     width: 100px;
     height: 100px;
     min-height: 100px;
@@ -59,8 +62,8 @@
     align-items: center;
     justify-content: center;
 
-    .img{
-      width:  70px;
+    .img {
+      width: 70px;
       height: 70px;
     }
   }
@@ -88,4 +91,9 @@
     font-size: 12px;
     color: red;
   }
+}
+
+
+.profileContainer::-webkit-scrollbar {
+  display: none;
 }
