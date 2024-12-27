@@ -65,7 +65,11 @@
   justify-content: space-around;
 }
 
-.button{
+.main{
+  margin-bottom: 100px;
+}
+
+.button1{
     background-color: var(--accent-color);
     opacity: 0.5;
     color: var(--main-color);

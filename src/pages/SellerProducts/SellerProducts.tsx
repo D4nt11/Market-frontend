@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import CardProduct from "../../components/Card/CardProduct/CardProduct";
 import BasicInput from "../../components/FormInput/BasicInput/BasicInput";
 import styles from "./SellerProducts.module.css";
-import { Descriptions, Rate } from "antd";
+import { Rate } from "antd";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import MultiSelectDropdown from "../../components/MultiSelectDropdown/MultiSelectDropdown";
@@ -19,11 +19,11 @@ const SellerProducts = () => {
     })
     .required();
 
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors, isValid },
-  // } = useForm({ resolver: yupResolver(schema) });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({ resolver: yupResolver(schema) });
 
   const createProduct = () =>{}
 
@@ -75,7 +75,7 @@ const SellerProducts = () => {
       </section>
 
       <section className={styles.addMenu}>
-        {/* <form onSubmit={handleSubmit(createProduct)} className={styles.main}>
+        <form onSubmit={handleSubmit(createProduct)} className={styles.main}>
           <BasicInput
             name="Название товара"
             type="text"
@@ -109,14 +109,15 @@ const SellerProducts = () => {
           />
           <p className={styles.p}>{errors.name?.message}</p>
           <input
-            className={styles.button}
             type="submit"
             value="Войти"
-            style={{ opacity: isValid ? 1 : 0.5 }}
+            style={{ opacity: isValid ? 1 : 0.5, backgroundColor: "var(--accent-color)"}}
+            className={styles.button1}
           />
-        </form> */}
-
+        </form>
+        <div className={styles.multiContainer}>
         <MultiSelectDropdown />
+        </div>
       </section>
     </div>
   );

@@ -19,6 +19,7 @@ import Home from "./pages/Home/Home";
 import Catalog from "./pages/Catalog/Catalog";
 import SellerCatalog from "./pages/SellerCatalog/SellerCatalog";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
+import Cart from "./pages/Cart/Cart";
 
 const SwitchBackgroundWrapper = ({ children }: any) => {
   const location = useLocation();
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
         element:(
             <ClientProfile />
         ),
+      },
+      {
+        path: "client/cart",
+        element: <Cart />,
       },
 
       ///Seller//////
