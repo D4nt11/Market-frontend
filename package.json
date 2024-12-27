@@ -19,6 +19,7 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.1",
     "react-router-dom": "^7.1.1",
+    "react-select-material-ui": "^9.3.1",
     "react-text-mask": "^5.5.0",
     "yup": "^1.6.1",
     "zustand": "^5.0.2"

@@ -13,9 +13,9 @@ const Home = () => {
     setError("");
     try {
       const response = await fetch(`${API_URL}/products`);
-      if (!response.ok) {
-        throw new Error(`Ошибка: ${response.status} ${response.statusText}`);
-      }
+      // if (!response.ok) {
+      //   throw new Error(`Ошибка: ${response.status} ${response.statusText}`);
+      // }
       const data = await response.json();
       setProducts(data);
     } catch (err: any) {
@@ -30,29 +30,29 @@ const Home = () => {
     getProducts();
   }, []);
 
-  if (isLoading) {
-    return (
-      <div className={styles.homeContainer}>
-        <h1>Загрузка...</h1>
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className={styles.homeContainer}>
+  //       <h1>Загрузка...</h1>
+  //     </div>
+  //   );
+  // }
 
-  if (error) {
-    return (
-      <div className={styles.homeContainer}>
-        <h1>Ошибка: {error}</h1>
-      </div>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <div className={styles.homeContainer}>
+  //       <h1>Ошибка: {error}</h1>
+  //     </div>
+  //   );
+  // }
 
-  if (products.length === 0) {
-    return (
-      <div className={styles.homeContainer}>
-        <h1>Товары не найдены</h1>
-      </div>
-    );
-  }
+  // if (products.length === 0) {
+  //   return (
+  //     <div className={styles.homeContainer}>
+  //       <h1>Товары не найдены</h1>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className={styles.homeContainer}>
