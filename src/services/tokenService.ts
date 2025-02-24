@@ -13,7 +13,7 @@ export const getToken = () => {
   return token;
 };
 
-export const removeToken = (refreshToken = false) => {
+export const removeToken = async (refreshToken = false) => {
   Cookies.remove("token");
   if (refreshToken) {
     Cookies.remove("refreshToken");
@@ -29,8 +29,8 @@ interface jwt extends JwtPayload {
     id: string;
 }
 
-export const decodeJwt = () => {
-  const token = getToken();
+export const decodeJwt = async () => {
+  const token = await getToken();
   if (token) {
     const decode = jwtDecode<jwt>(token);
     return decode;

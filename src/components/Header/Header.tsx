@@ -6,9 +6,22 @@ import { useSellerStore } from "../../store/useSellerStore";
 const Header = () => {
   const navigate = useNavigate();
 
-  const isAuthClient = useClientStore().isClientAuth
-  const isAuthSeller = useSellerStore().isSellerAuth
-  const toProfile = () =>{
+  // const isAuthClient = useClientStore().isClientAuth
+  // const isAuthSeller = useSellerStore().isSellerAuth
+
+  // isAuth присваивается раньше, чем обновляется
+  let isAuthClient = false;
+  let isAuthSeller = false;
+  const updateAuth = async () => { //теперь перестало работать
+    //пофиксил, добавив await при вызове updateAuth
+    await useSellerStore.getState().checkAuth();
+    await useClientStore.getState().checkAuth();
+    isAuthClient = useClientStore.getState().isClientAuth;
+    isAuthSeller = useSellerStore.getState().isSellerAuth;
+  }
+  const toProfile = async () =>{
+    await updateAuth();
+    console.log(isAuthClient, isAuthSeller)
     if(isAuthClient){
       navigate("/client/profile");
     }
@@ -20,7 +33,8 @@ const Header = () => {
     }
   }
 
-  const toClientOrders = () =>{
+  const toClientOrders = async () =>{
+    await updateAuth();
     if(isAuthClient){
       navigate("/cleint/order")
     }
@@ -29,7 +43,8 @@ const Header = () => {
     }
   }
 
-  const toClientCart = () =>{
+  const toClientCart = async () =>{
+    await updateAuth();
     if(isAuthClient){
       navigate("/client/cart")
     }
@@ -46,7 +61,8 @@ const Header = () => {
     navigate("/home")
   }
 
-  const toSeller = () =>{
+  const toSeller = async () =>{
+    await updateAuth();
     if(isAuthSeller){
       navigate("/seller/profile")
     }

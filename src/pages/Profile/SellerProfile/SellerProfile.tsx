@@ -11,33 +11,33 @@ import { authModel } from "../../../services/authModel";
 import { useEffect, useState } from "react";
 import { useSellerStore } from "../../../store/useSellerStore";
 
-const schema = yup.object().shape({
-  shopName: yup.string().trim().required("Введите название магазина"),
-  name: yup.string().trim().required("Введите имя"),
-  surname: yup.string().trim().required("Введите фамилию"),
-  patronymic: yup.string().trim(),
-  phone: yup
-    .string()
-    .required("Введите номер телефона")
-    .matches(
-      /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
-      "Введите корректный номер телефона в формате +7 (xxx) xxx-xx-xx"
-    ),
-  email: yup
-    .string()
-    .required("Введите почту")
-    .matches(/^\S+@\S+\.\S+$/, "Введите почту в правильном формате"),
-  password: yup.string().required("Введите пароль"),
-  INN: yup
-    .string()
-    .required("Введите ИНН")
-    .trim()
-    .max(10)
-    .matches(/^\d{10}/, "Введите ИНН в правильном формате(10 цифр)"),
-});
-
 const SellerProfile = () => {
   const navigate = useNavigate();
+
+  const schema = yup.object().shape({
+    shopName: yup.string().trim().required("Введите название магазина"),
+    name: yup.string().trim().required("Введите имя"),
+    surname: yup.string().trim().required("Введите фамилию"),
+    patronymic: yup.string().trim(),
+    phone: yup
+      .string()
+      .required("Введите номер телефона")
+      .matches(
+        /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
+        "Введите корректный номер телефона в формате +7 (xxx) xxx-xx-xx"
+      ),
+    email: yup
+      .string()
+      .required("Введите почту")
+      .matches(/^\S+@\S+\.\S+$/, "Введите почту в правильном формате"),
+    password: yup.string().required("Введите пароль"),
+    INN: yup
+      .string()
+      .required("Введите ИНН")
+      .trim()
+      .max(10)
+      .matches(/^\d{10}/, "Введите ИНН в правильном формате(10 цифр)"),
+  });
 
   const {
     register,
@@ -47,27 +47,35 @@ const SellerProfile = () => {
     reset,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {},
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const sellerResponse = await api.get("/sellers/profile");
-        delete sellerResponse.data.password;
-        reset(sellerResponse.data);
-      } catch (error) {
-        console.error("Ошибка загрузки данных:", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const sellerResponse = await api.get("/sellers/profile");
+      delete sellerResponse.data.password;
+      reset(sellerResponse.data);
+      return sellerResponse.data;
+    } catch (error) {
+      console.error("Ошибка загрузки данных:", error);
+    }
+  };
 
-    if (useSellerStore.getState().isSellerAuth) {
+  const useFetchData = async () => {
+    await useSellerStore.getState().checkAuth();
+    const isSellerAuth = useSellerStore.getState().isSellerAuth;
+    if (isSellerAuth) {
       fetchData();
     }
+  };
+
+  useEffect(() => {
+    useFetchData();
   }, [reset]);
 
   const updateData = async (data: any) => {
-    if(isValid && useSellerStore.getState().isSellerAuth){
-      api.post("/auth/seller/refresh", data)
+    if (isValid && useSellerStore.getState().isSellerAuth) {
+      api.post("/auth/seller/refresh", data);
     }
   };
 
@@ -81,11 +89,13 @@ const SellerProfile = () => {
     navigate("/home");
   };
 
-  const toSellerProducts = () => {
-    if(useSellerStore.getState().isSellerAuth){
-      navigate(`/seller/products/${useSellerStore.getState().sellerId}`);
+  const toSellerProducts = async () => {
+    if (useSellerStore.getState().isSellerAuth) {
+      const sellerId = await useSellerStore.getState().sellerId;
+      console.log(sellerId);
+      navigate(`/seller/products/${sellerId}`);
     }
-  }
+  };
 
   return (
     <div className={styles.profileContainer}>
@@ -98,7 +108,7 @@ const SellerProfile = () => {
           />
         </button>
         <div className={styles.rightButtons}>
-        <button className={styles.buttonsButton} onClick={toSellerProducts}>
+          <button className={styles.buttonsButton} onClick={toSellerProducts}>
             <img
               className={styles.buttonsButtonImage}
               src="../../../../public/icons/shop.svg"

@@ -3,7 +3,7 @@
 	padding: 0px;
 	margin: 0px;
 	border: none;
-    box-sizing: border-box;
+	box-sizing: border-box;
 	/* border: 2px solid black; */
 
 
@@ -18,26 +18,40 @@
 
 /* Links */
 
-a, a:link, a:visited  {
-    text-decoration: none;
+a,
+a:link,
+a:visited {
+	text-decoration: none;
 }
 
-a:hover  {
-    text-decoration: none;
+a:hover {
+	text-decoration: none;
 }
 
 /* Common */
 
-aside, nav, footer, header, section, main {
+aside,
+nav,
+footer,
+header,
+section,
+main {
 	display: block;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-    /* font-size: inherit; */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	/* font-size: inherit; */
 	font-weight: inherit;
 }
 
-ul, ul li {
+ul,
+ul li {
 	list-style: none;
 }
 
@@ -45,39 +59,46 @@ img {
 	vertical-align: top;
 }
 
-img, svg {
+img,
+svg {
 	max-width: 100%;
 	height: auto;
 }
 
 address {
-  font-style: normal;
+	font-style: normal;
 }
 
 /* Form */
 
-input, textarea, button, select {
+input,
+textarea,
+button,
+select {
 	font-family: inherit;
-    font-size: inherit;
-    color: inherit;
-    background-color: transparent;
+	font-size: inherit;
+	color: inherit;
+	background-color: transparent;
 }
 
 input::-ms-clear {
 	display: none;
 }
 
-button, input[type="submit"] {
-    display: inline-block;
-    box-shadow: none;
-    background-color: transparent;
-    background: none;
-    cursor: pointer;
+button,
+input[type="submit"] {
+	display: inline-block;
+	box-shadow: none;
+	background-color: transparent;
+	background: none;
+	cursor: pointer;
 }
 
-input:focus, input:active,
-button:focus, button:active {
-    outline: none;
+input:focus,
+input:active,
+button:focus,
+button:active {
+	outline: none;
 }
 
 button::-moz-focus-inner {
@@ -96,18 +117,50 @@ legend {
 
 /* ------------------- */
 
-:root{
+:root {
 
 
 	/* colors */
 	--background-color: #f3f3f3;
 	--main-color: #ffffff;
 	--accent-color: #005675;
+	/* --accent-color: #e48100; */
+	/* --accent-color: #3a9b57; */
 	--header-accent-color: #f0f2f5;
 	--text-color: #333333;
 	--form-text-color: #666666;
 	--form-input-color: #66666659;
+
+
+	/* --background-color: #f7f9fc;
+	--main-color: #ffffff;
+	--accent-color: #007ea8;
+	--header-accent-color: #e9eef3;
+	--text-color: #2c3e50;
+	--form-text-color: #53687e;
+	--form-input-color: #cfd8e2; */
+
+
+	/* --background-color: #fefdfc;
+	--main-color: #ffffff;
+	--accent-color: #f2683a;
+	--header-accent-color: #f9f4f2;
+	--text-color: #4a4a4a;
+	--form-text-color: #7a7a7a;
+	--form-input-color: #e0dedb; */
+
+	/* --background-color: #dcffe5; */
+	/* --background-color: #eefdf2; */
+	/* --background-color: #f3f3f3; */
+	/* --main-color: #8cd4bc; */
+	/* --main-color: #23c790; */
+	/* --main-color: #ffffff;
+	--accent-color: #00A67C;
+	--header-accent-color: #f9f4f2;
 	
+	--text-color: #4a4a4a;
+	--form-text-color: #7a7a7a;
+	--form-input-color: #e0dedb; */
 }
 
 /* #root, body{

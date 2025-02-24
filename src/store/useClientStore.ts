@@ -6,6 +6,7 @@ interface AuthStore {
   clientId: string | null;
   login: () => void;
   logout: () => void;
+  checkAuth: () => Promise<void>;
 }
 
 interface decode{
@@ -13,28 +14,28 @@ interface decode{
   id: string;
 }
 
-const isClient = () => {
-  const decode = <decode><unknown>decodeJwt()
-  if (decode && decode?.type === "client") {
-    return true;
-  }
-  return false;
+const isClient = async (): Promise<boolean> => {
+  const decode = (await decodeJwt()) as decode;
+  return decode?.type === "client";
 };
 
-const getId = () => {
-  const decode = <decode><unknown>decodeJwt()
-  if (decode) {
-    return decode.id;
-  }
-  return null
+const getId = async (): Promise<string | null> => {
+  const decode = (await decodeJwt()) as decode;
+  return decode?.id ?? null;
+
 }
 
 export const useClientStore = create<AuthStore>((set) => ({
-  isClientAuth: Boolean(isClient()),
-  clientId: getId(),
+  isClientAuth: false,
+  clientId: null,
   login: () => set({ isClientAuth: true }),
   logout: () => {
     removeToken(true);
     set({ isClientAuth: false });
+  },
+  checkAuth: async () => {
+    const clientAuth = await isClient();
+    const id = await getId();
+    set({isClientAuth: clientAuth, clientId: id});
   },
 }));

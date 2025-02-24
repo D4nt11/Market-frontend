@@ -12,6 +12,8 @@ import { useClientStore } from "../../../store/useClientStore";
 import { useEffect } from "react";
 
 const ClientProfile = () => {
+  const navigate = useNavigate();
+
   const schema = yup.object().shape({
     name: yup.string().trim().required("Введите имя"),
     surname: yup.string().trim().required("Введите фамилию"),
@@ -39,29 +41,34 @@ const ClientProfile = () => {
     resolver: yupResolver(schema),
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const clientResponse = await api.get("/clients/profile");
-        delete clientResponse.data.password;
-        reset(clientResponse.data);
-      } catch (error) {
-        console.error("Ошибка загрузки данных:", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const clientResponse = await api.get("/clients/profile");
+      delete clientResponse.data.password;
+      reset(clientResponse.data);
+    } catch (error) {
+      console.error("Ошибка загрузки данных:", error);
+    }
+  };
 
-    if (useClientStore.getState().isClientAuth) {
+  const useFetchData = async () => {
+    await useClientStore.getState().checkAuth();
+    const isClientAuth = useClientStore.getState().isClientAuth;
+    if (isClientAuth) {
       fetchData();
     }
+  };
+
+  useEffect(() => {
+    useFetchData();
   }, [reset]);
 
-  const updateData = (data: any) =>{
-    if(isValid && useClientStore.getState().isClientAuth){
-      api.post("/auth/client/refresh", data)
+  const updateData = (data: any) => {
+    if (isValid && useClientStore.getState().isClientAuth) {
+      api.post("/auth/client/refresh", data);
     }
-  }
+  };
 
-  const navigate = useNavigate();
   const logout = () => {
     authModel.logout();
     alert("logout");

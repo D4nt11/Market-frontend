@@ -1,0 +1,170 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 12px;
+    margin-top: 15px;
+    color: var(--form-text-color);
+    cursor: default;
+}
+
+.multiContainer {
+    border: 1px solid var(--form-input-color);
+    border-radius: 6px;
+    width: 400px;
+    min-height: 35px;
+    margin-top: 2px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    position: relative;
+}
+
+.valuesInputContainer {
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.valuesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 5px;
+}
+
+.valueContainer{
+    display: flex;
+    align-items: center;
+    height: 25px;
+    background-color: var(--background-color);
+    padding: 3px;
+    gap: 3px;
+    border-radius: 6px;
+}
+
+.valueImg{
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 1px solid var(--form-input-color);
+}
+
+.valueName{
+    text-align: center;
+}
+
+.delValueBtn{
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input {
+    outline: none;
+    border-bottom: 1px solid var(--form-input-color);
+    width: 100%;
+    height: 35px;
+    font-size: 15px;
+}
+
+.btns{
+    display: flex;
+    width: 50px;
+    height: inherit;
+}
+
+.delBtn, .dropBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 25px;
+    width: 25px;
+    /* height: 35px; */
+    height: 100%;
+}
+
+.delBtn{
+    
+}
+
+.delSvg{
+    transition: 0.2s ease-in-out;
+}
+
+.delSvg:hover{
+    fill: #d00000;
+}
+
+.dropBtn{
+    border-left: 1px solid var(--form-input-color);
+}
+
+.dropSvg{
+    transition: 0.2s ease-in-out;
+}
+
+.dropSvg:hover{
+    cursor: pointer;
+    fill: grey;
+}
+
+.dropDownContainer{
+    display: none;
+    width: 400px;
+    min-height: 35px;
+    max-height: 175px;
+    /* position: absolute; */
+    top: 45px;
+    left: 0px;
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background-color: var(--main-color);
+    border: 1px solid var(--form-input-color);
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.spisok{
+    padding: 5px;
+    width: 100%;
+}
+
+.punkt{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 35px;
+    gap: 10px;
+    transition: 0.2s ease-in-out;
+    padding: 5px;
+    border-radius: 6px;
+}
+
+.punkt:hover{
+    cursor: pointer;
+    background-color: var(--background-color);
+}
+
+.punktImg{
+    height: 25px;
+    width: 25px;
+    border-radius: 6px;
+    border: 1px solid var(--form-input-color);
+}
+
+.punktName{
+    
+}
+
+.dropP{
+    width: 100%;
+    height: 35px;
+    background-color: #d00000;
+}
