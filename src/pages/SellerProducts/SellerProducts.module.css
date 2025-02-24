@@ -1,71 +1,90 @@
-.SellerProductsContainer{
-    display: flex;
-    align-items:  center;
-    background-color: var(--main-color);
-    max-width: 950px;
-    margin: auto;
-    margin-top: 50px;
-    border-radius: 25px 25px 0px 0px;
-    height: calc(100vh - 130px);
-    overflow: auto;
+.SellerProductsContainer {
+  display: flex;
+  align-items: center;
+  background-color: var(--main-color);
+  max-width: 950px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 25px 25px 0px 0px;
+  height: calc(100dvh - 130px);
+  /* overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none; */
+  position: relative;
 }
 
-.leftSection{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 30%;
-    height: 100%;
-    background-color: var(--main-color);
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+  background-color: var(--main-color);
+  border-radius: 25px 0px 0px 0px;
 }
 
-.profileImage{
-    width: 100px;
-    height: 100px;
-    min-height: 100px;
-    background-color: var(--background-color);
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
+.buttons {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  height: 30px;
+  margin-top: 30px;
+}
 
-    .img{
-      width:  70px;
-      height: 70px;
-    }
+.buttonsButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.profileImage {
+  width: 100px;
+  height: 100px;
+  min-height: 100px;
+  background-color: var(--background-color);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .img {
+    width: 70px;
+    height: 70px;
   }
+}
 
-  /* .rating{
+/* .rating{
     
   } */
 
-.contacts{
+.contacts {
   margin-top: 30px;
-} 
+}
 
-.email{
+.email {
   margin-top: 7px;
 }
 
 
 
 
-.rightSection{
+.rightSection {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 70%;
   height: 100%;
   background-color: var(--main-color);
+  border-radius: 0px 25px 0px 0px;
 }
 
-.inputContainer{
+.inputContainer {
   position: relative;
   margin-top: 50px;
 }
 
-.sellerInput{
+.sellerInput {
   width: 640px;
   height: 40px;
   background: var(--header-accent-color);
@@ -75,17 +94,17 @@
   position: relative;
 }
 
-.searchImg{
+.searchImg {
   height: 26px;
   position: absolute;
   left: 5px;
   top: 16px;
 }
 
-.sellerCatalog{
+.sellerCatalog {
   background-color: var(--background-color);
   width: 640px;
-  height: calc(100vh - 260px);
+  height: calc(100dvh - 260px);
   border-radius: 25px;
   margin: 20px 0px;
   padding: 10px;
@@ -93,16 +112,16 @@
   flex-wrap: wrap;
   gap: 10px;
   overflow: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.sellerCatalog::-webkit-scrollbar{
+.sellerCatalog::-webkit-scrollbar {
   display: none;
 }
 
 
-.addContainer{
+.addContainer {
   width: 200px;
   height: 300px;
   padding: 5px 5px 0px 5px;
@@ -117,7 +136,7 @@
   cursor: pointer;
 }
 
-.vector{
+.vector {
   width: 80px;
   height: 80px;
   display: flex;
@@ -128,41 +147,66 @@
 }
 
 
-.addMenu{
-  display: flex;
-  align-items:  center;
+.addMenuContainer {
   background-color: var(--main-color);
-  width: 950px;
-  margin: auto;
-  margin-top: 50px;
+  max-width: 950px;
+  width: 100%;
   border-radius: 25px 25px 0px 0px;
-  height: calc(100vh - 130px);
-  overflow: auto;
+  height: calc(100dvh - 130px);
   position: absolute;
+  top: 0px;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 80px;
+  display: none;
+  overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* min-height: 500px; */
 }
 
-.main{
+.addMenu {
+  margin: auto;
+  position: inherit;
+  top: 50px;
+}
+
+.buttonsAddMenu {
+  display: flex;
+  width: 100%;
+  min-height: 30px;
+  height: 30px;
+  align-items: center;
+  margin-top: 30px;
+  position: inherit;
+  top: 0px;
+}
+
+.main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.button1{
+.p {
+  font-size: 12px;
+  color: red;
+}
+
+.button1 {
   background-color: var(--accent-color);
   opacity: 0.5;
   color: var(--main-color);
   border-radius: 5px;
-  height: 30px;
+  height: 35px;
   width: 120px;
   padding: 0px 10px;
   font-size: 12px;
   margin: 30px 0px;
 }
 
-.multiContainer{
+.multiContainer {
   width: 400px;
+  margin-top: 20px;
 }
