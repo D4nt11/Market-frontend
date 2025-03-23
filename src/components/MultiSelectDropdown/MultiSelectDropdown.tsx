@@ -1,6 +1,6 @@
 import * as React from "react";
 import { MultipleSelect } from "react-select-material-ui";
-import api from "../../http/axios";
+import api from "../../api/api";
 import styles from "./MultiSelectDropdown.module.css";
 import { data } from "react-router-dom";
 import { useEffect } from "react";

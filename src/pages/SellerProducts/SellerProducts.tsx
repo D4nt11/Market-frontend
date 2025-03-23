@@ -7,13 +7,32 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import MultiSelectDropdown from "../../components/MultiSelectDropdown/MultiSelectDropdown";
 import MultiSelector from "../../components/FormInput/MultiSelector/MultiSelector";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSellerStore } from "../../store/useSellerStore";
-import api from "../../http/axios";
-import { useEffect } from "react";
+import api from "../../api/api";
+import { useEffect, useState } from "react";
+
+interface sellerData {
+  id: string;
+  shopName: string;
+  surname: string;
+  name: string;
+  patronymic: string;
+  INN: string;
+  phone: string;
+  email: string;
+  password: string;
+  logo: string | null;
+  sellerCategory: [];
+  products: [];
+}
 
 const SellerProducts = () => {
   const navigate = useNavigate();
+  const { sellerId } = useParams();
+  const [sellerData, setSellerData] = useState<sellerData | null>(null);
+  const API_URL = import.meta.env.VITE_API_URL;
+  const [products, setProducts] = useState([]);
 
   const schema = yup.object().shape({
     name: yup.string().required("Введите название товара"),
@@ -42,22 +61,40 @@ const SellerProducts = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   useEffect(() => {
-    useSellerStore.getState().checkAuth();
+    // useSellerStore.getState().checkAuth();
+
+    const fetchSellerData = async () => {
+      const response = await api.get(`/sellers/${sellerId}`);
+      setSellerData(response.data);
+    };
+    if (sellerId) {
+      fetchSellerData();
+    }
+  }, [sellerId]);
+
+  const getProducts = async () => {
+    const response = await fetch(`${API_URL}/products`);
+    const data = await response.json();
+    setProducts(data);
+  };
+
+  useEffect(() => {
+    getProducts();
   }, []);
 
   const createProduct = async (data: any) => {
     await useSellerStore.getState().checkAuth();
-    if(useSellerStore.getState().isSellerAuth){
+    if (useSellerStore.getState().isSellerAuth) {
       data = {
-        ...data, 
+        ...data,
         sellerId: useSellerStore.getState().sellerId,
-      }
-      console.log(data)
-      // await api.post('/products', data)
-      alert('succes')
-    }
-    else{
-      alert('need auth')
+      };
+      console.log(data);
+      await api.post('/products', data)
+      alert("succes");
+      toBackFromAddMenu();
+    } else {
+      alert("need auth");
     }
   };
 
@@ -69,7 +106,7 @@ const SellerProducts = () => {
   };
 
   const toBack = () => {
-    navigate(`/seller/profile`)
+    navigate(`/seller/profile`);
   };
 
   const toBackFromAddMenu = () => {
@@ -98,7 +135,7 @@ const SellerProducts = () => {
             alt=""
           />
         </div>
-        <h1>SellerName</h1>
+        <h1>{sellerData?.shopName}</h1>
         <Rate
           value={2.5}
           disabled={true}
@@ -108,8 +145,8 @@ const SellerProducts = () => {
         />
         <div className={styles.contacts}>
           <h3>Контактные данные</h3>
-          <p className={styles.email}>{"emai"}</p>
-          <p className={styles.phone}>{"+7 (921) 562-66-73"}</p>
+          <p className={styles.email}>{sellerData?.email}</p>
+          <p className={styles.phone}>{sellerData?.phone}</p>
         </div>
       </section>
 
@@ -132,6 +169,9 @@ const SellerProducts = () => {
               <img src="../../../public/icons/vector.svg" alt="" />
             </div>
           </div>
+          {products.map((product: any) => (
+            <CardProduct key={product.id} {...product} />
+          ))}
         </div>
       </section>
 

@@ -1,4 +1,4 @@
-import api from "./axios";
+import api from "./api";
 
 export const addToCart = async (clientId: string, productId: string) => {
   const response = await api.post("/cart/add", { clientId, productId });

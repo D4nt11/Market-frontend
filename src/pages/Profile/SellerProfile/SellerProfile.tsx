@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import BasicInput from "../../../components/FormInput/BasicInput/BasicInput";
 import PhoneInput from "../../../components/FormInput/PhoneInput/PhoneInput";
 import PswdInput from "../../../components/FormInput/PswdInput/PswdInput";
-import api from "../../../http/axios";
+import api from "../../../api/api";
 import { useNavigate } from "react-router-dom";
 import { authModel } from "../../../services/authModel";
 import { useEffect, useState } from "react";
@@ -74,6 +74,7 @@ const SellerProfile = () => {
   }, [reset]);
 
   const updateData = async (data: any) => {
+    // await useSellerStore.getState().checkAuth();
     if (isValid && useSellerStore.getState().isSellerAuth) {
       api.post("/auth/seller/refresh", data);
     }

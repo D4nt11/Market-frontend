@@ -3,11 +3,11 @@
     align-items:  center;
     flex-direction: column;
     background-color: var(--main-color);
-    max-width: 950px;
+    max-width: 1440px;
     margin: auto;
-    margin-top: 80px;
+    margin-top: 50px;
     border-radius: 25px 25px 0px 0px;
-    height: calc(100vh - 160px);
+    height: calc(100vh - 130px);
     overflow: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -16,11 +16,11 @@
     .buttons{
       height: 35px;
       width: 100%;
-      max-width: 950px;
+      max-width: 1440px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px;
+      padding:  0px 50px;
       margin-top: 15px;
     }
     
