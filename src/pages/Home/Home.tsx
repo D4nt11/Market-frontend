@@ -56,9 +56,39 @@ const Home = () => {
 
   return (
     <div className={styles.homeContainer}>
-      {products.map((product: any) => (
-        <CardProduct key={product.id} {...product} />
-      ))}
+      <div className={styles.homeContent}>
+        {products.map((product: any) => (
+          <>
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+            <CardProduct key={product.id} {...product} />
+          </>
+        ))}
+      </div>
     </div>
   );
 };

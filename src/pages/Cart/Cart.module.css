@@ -1,0 +1,96 @@
+.container{
+    /* padding: 50px; */
+    display: flex;
+    min-width: 900px;
+    width: 1440px;
+    margin: auto;
+    margin-top: 50px;
+    height: calc(100vh - 130px);
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    padding: 0px 20px;
+
+
+    .h1{
+        height: 40px;
+        font-size: 30px;
+        width: 100%;
+    }
+
+    .cardContainer{
+        display: flex;
+        align-items: start ;
+        flex-wrap: wrap;
+        width: 100%;
+        overflow: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        gap: 10px;
+        height: auto;
+        MAX-height: calc(100% - 50px);
+    }
+    
+    .cardContainer::-webkit-scrollbar{
+        display: none;
+    }
+}
+
+.right{
+    display: flex;
+    width: 40%;
+    height: 200px;
+    padding: 10px;
+
+    
+    .infoContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 180px;
+        width: 100%;
+        background-color: var(--main-color);
+        border-radius: 16px;
+        padding: 10px;
+
+
+        .totalPriceContainer{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+
+            .h2{
+                font-size: 24px;
+                /* width: 100%; */
+            }
+
+            .price{
+                display: flex;
+                align-items: center;
+                justify-content: end;
+                font-size: 20px;
+            }
+            
+            .price:after {
+                content: '\20BD';
+                font-size: 20px;
+                font-weight: 100;
+            }
+        }
+
+        .button {
+            background-color: var(--accent-color);
+            opacity: 0.5;
+            color: var(--main-color);
+            border-radius: 5px;
+            height: 35px;
+            width: 60%;
+            padding: 0px 10px;
+          }
+    }
+}

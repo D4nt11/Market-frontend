@@ -3,7 +3,7 @@ import styles from "./SingleProduct.module.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useClientStore } from "../../store/useClientStore";
-import api from "../../http/axios";
+import api from "../../api/api";
 import Review from "../../components/Review/Review";
 
 const SingleProduct = () => {

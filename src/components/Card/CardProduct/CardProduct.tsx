@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./CardProduct.module.css";
 import { useNavigate } from "react-router-dom";
-import api from "../../../http/axios";
+import api from "../../../api/api";
 import { useClientStore } from "../../../store/useClientStore";
 
 // export interface product {

@@ -1,4 +1,4 @@
-import api from "../http/axios"
+import api from "../api/api"
 
 
 export const AuthService = {

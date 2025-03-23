@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import BasicInput from "../../../components/FormInput/BasicInput/BasicInput";
 import PhoneInput from "../../../components/FormInput/PhoneInput/PhoneInput";
 import PswdInput from "../../../components/FormInput/PswdInput/PswdInput";
-import api from "../../../http/axios";
+import api from "../../../api/api";
 import { useNavigate } from "react-router-dom";
 import { authModel } from "../../../services/authModel";
 import { useClientStore } from "../../../store/useClientStore";

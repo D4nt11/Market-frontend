@@ -1,82 +1,144 @@
 .container {
-    width: 400px;
-    height: 200px;
-    padding: 5px 5px 0px 5px;
-    background-color: var(--main-color);
-    -webkit-box-shadow: 3px 1px 9px 3px rgba(34, 60, 80, 0.1);
-    -moz-box-shadow: 3px 1px 9px 3px rgba(34, 60, 80, 0.1);
-    box-shadow: 3px 1px 9px 3px rgba(34, 60, 80, 0.1);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .imgContainer {
-    width: 100%;
-    height: 250px;
-    background-color: var(--background-color);
-    border-radius: 16px;
-    cursor: pointer;
-    overflow: hidden;
+  width: 600px;
+  height: 150px;
+  padding: 15px;
+  background-color: var(--main-color);
+  -webkit-box-shadow: 3px 1px 9px 3px rgba(34, 60, 80, 0.1);
+  -moz-box-shadow: 3px 1px 9px 3px rgba(34, 60, 80, 0.1);
+  box-shadow: 3px 1px 9px 3px rgba(34, 60, 80, 0.1);
+  border-radius: 16px;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  gap: 15px;
+}
+
+.imgContainer {
+  width: 120px;
+  height: 120px;
+  background-color: var(--background-color);
+  border-radius: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nameContainer {
+  width: 250px;
+  height: 120px;
+}
+
+.dynamicContainer {
+  width: 170px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.price {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  /* padding-right: 18px; */
+  font-size: 16px;
+}
+
+.price:after {
+  content: '\20BD';
+  font-size: medium;
+  font-weight: 100;
+}
+
+.productName {
+  width: 100px;
+  height: 35px;
+  display: flex;
+  font-size: 16px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+}
+
+.buttons {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+
+
+  .button {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: var(--accent-color);
   }
-  
-  .info {
-    width: 100%;
-    height: 70px;
-  }
-  
-  .price{
-      width: 100%;
-      height: 25px;
+
+  .counter {
+    display: flex;
+    width: 140px;
+    height: 30px;
+    justify-content: center;
+
+
+    .minusBtn {
+      background-color: var(--accent-color);
       display: flex;
       align-items: center;
-      justify-content: end;
-      padding-right: 18px;
-      font-size: 16px;
-  }
-  
-  .price:after {
-      content: '\20BD';
-      font-size: medium;
-      font-weight: 100;
-  }
-  
-  .productName{
-      width: 100px;
-      height: 35px;
-      display: flex;
-      font-size: 16px;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-      text-overflow: ellipsis;
-  }
-  
-  .buttons {
-    width: 100%;
-    height: 45px;
-    display: flex;
-    align-items: start;
-    justify-content: space-around;
-  }
-  
-  .main{
-    margin-bottom: 100px;
-  }
-  
-  .button1{
+      justify-content: center;
+      width: 30px;
+      height: 100%;
+      border-radius: 5px 0px 0px 5px;
+      border-right: 1px solid  var(--main-color);
+    }
+
+    .count {
       background-color: var(--accent-color);
-      opacity: 0.5;
-      color: var(--main-color);
-      border-radius: 5px;
-      height: 25px;
-      width: 90px;
-      padding: 0px 10px;
-      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      min-width: 30px;
+      max-width: 70px;
+      padding: 0px 5px;
+      overflow: hidden;
+    }
+
+    .plusBtn {
+      background-color: var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 100%;
+      border-radius: 0px 5px 5px 0px;
+      border-left: 1px solid  var(--main-color);
+    }
   }
-  
+
+
+}
+
+.main {
+  margin-bottom: 100px;
+}
+
+.button1 {
+  background-color: var(--accent-color);
+  opacity: 0.5;
+  color: var(--main-color);
+  border-radius: 5px;
+  height: 25px;
+  width: 90px;
+  padding: 0px 10px;
+  font-size: 12px;
+}
