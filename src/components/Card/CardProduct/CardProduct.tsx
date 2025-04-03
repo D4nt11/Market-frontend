@@ -40,7 +40,7 @@ import { useClientStore } from "../../../store/useClientStore";
 //   },
 // ];
 
-const CardProduct = ({...product}) => {
+const CardProduct = ({ ...product }) => {
   useEffect(() => {
     const priceElements = document.querySelectorAll(`.${styles.price}`);
 
@@ -51,24 +51,24 @@ const CardProduct = ({...product}) => {
     });
   }, []);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const toProduct = () => {
-    navigate(`/products/${product.id}`)
-  }
+    navigate(`/products/${product.id}`);
+  };
 
-  const addToCart = async () =>{
-    if(useClientStore.getState().isClientAuth){
+  const addToCart = async () => {
+    await useClientStore.getState().checkAuth();
+    if (useClientStore.getState().isClientAuth) {
       const data = {
         clientId: useClientStore.getState().clientId,
         productId: product.id,
-      }
-      await api.post('/cart/add', data)
-      alert('succes')
+      };
+      await api.post("/cart/add", data);
+      alert("succes");
+    } else {
+      alert("need auth");
     }
-    else{
-      alert('need auth')
-    }
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -77,12 +77,12 @@ const CardProduct = ({...product}) => {
       </div>
       <div className={styles.info}>
         <div className={styles.price}>{product.price}</div>
-        <div className={styles.productName}>
-          {product.name}
-        </div>
+        <div className={styles.productName}>{product.name}</div>
       </div>
       <div className={styles.buttons}>
-        <button className={styles.button} onClick={addToCart}>В корзину</button>
+        <button className={styles.button} onClick={addToCart}>
+          В корзину
+        </button>
         <button className={styles.button}>Заказать</button>
       </div>
     </div>

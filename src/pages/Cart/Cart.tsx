@@ -1,8 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CardCart from "../../components/Card/CardCart/CardCart";
 import styles from "./Cart.module.css";
+import api from "../../api/api";
+import { useClientStore } from "../../store/useClientStore";
 
 const Cart = () => {
+  const [products, setPrroducts]: any = useState();
+
+  const fetchCartProducts = async () => {
+    await useClientStore.getState().checkAuth();
+    if (useClientStore.getState().isClientAuth) {
+      const clientId = useClientStore.getState().clientId;
+      const products = await api.get(`/cart/${clientId}`);
+      if (products) {
+        // console.log(products.data.cartProduct)
+        setPrroducts(products.data.cartProduct);
+      } else {
+        alert("cart is empty");
+      }
+    }
+    else{
+      alert("need auth");
+    }
+  };
+
   useEffect(() => {
     const priceElements = document.querySelectorAll(`.${styles.price}`);
 
@@ -11,6 +32,8 @@ const Cart = () => {
         element.textContent?.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, "$1 ") ||
         "";
     });
+
+    fetchCartProducts();
   }, []);
 
   return (
@@ -18,23 +41,11 @@ const Cart = () => {
       <section className={styles.left}>
         <h1 className={styles.h1}>Корзина</h1>
         <div className={styles.cardContainer}>
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
-          <CardCart />
+          {
+            products?.map((product: any)=>(
+              <CardCart key={product?.productId} {...product.product} {...product}/>
+            ))
+          }
         </div>
       </section>
       <section className={styles.right}>

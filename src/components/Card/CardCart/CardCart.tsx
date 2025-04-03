@@ -21,12 +21,27 @@ const CardCart = ({ ...product }) => {
   };
 
   const addToCart = async () => {
+    await useClientStore.getState().checkAuth();
     if (useClientStore.getState().isClientAuth) {
       const data = {
         clientId: useClientStore.getState().clientId,
         productId: product.id,
       };
       await api.post("/cart/add", data);
+      alert("succes");
+    } else {
+      alert("need auth");
+    }
+  };
+
+  const reduceToCart = async () => {
+    await useClientStore.getState().checkAuth();
+    if (useClientStore.getState().isClientAuth) {
+      const data = {
+        clientId: useClientStore.getState().clientId,
+        productId: product.id,
+      };
+      await api.post("/cart/decrease", data);
       alert("succes");
     } else {
       alert("need auth");
@@ -40,12 +55,11 @@ const CardCart = ({ ...product }) => {
       </div>
       <div className={styles.nameContainer}>
         <div className={styles.productName}>
-          111111111111
           {product.name}
         </div>
       </div>
       <div className={styles.dynamicContainer}>
-        <div className={styles.price}>{product.price}1111111111</div>
+        <div className={styles.price}>{product.price}</div>
         <div className={styles.buttons}>
           <button className={styles.button}>
             <svg
@@ -66,7 +80,7 @@ const CardCart = ({ ...product }) => {
           </button>
           <div className={styles.counter}>
             <button className={styles.minusBtn}>-</button>
-            <p className={styles.count}>10</p>
+            <p className={styles.count}>{product.count}</p>
             <button className={styles.plusBtn}>+</button>
           </div>
 
